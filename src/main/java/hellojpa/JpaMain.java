@@ -18,14 +18,14 @@ public class JpaMain {
 
         try {
             //비영속
-            Member member = new Member();
-            member.setId(100L);
-            member.setName("HelloJPA");
-
-            //영속
-            System.out.println("==Before==");
-            em.persist(member);
-            System.out.println("==After==");
+//            Member member = new Member();
+//            member.setId(101L);
+//            member.setName("HelloJPA");
+//
+//            //영속
+//            System.out.println("==Before==");
+//            em.persist(member);
+//            System.out.println("==After==");
 
             //insert
 //            em.persist(member);
@@ -57,6 +57,24 @@ public class JpaMain {
 
             //객체를 삭제한 상태(삭제)
 //            em.remove(member);
+
+//            Member findMember = em.find(Member.class, 101L);
+//            Member findMember2 = em.find(Member.class, 101L); //똑같은걸 두번째 찾을 때는 select쿼리문이 한번 나간다 (첫번째 찾을때는 1차캐시에서 2번째부터는 데이터베이스에서 조회한다) 가져와서 1차캐시에 저장해놓는다(영속성컨텍스트에 올림) -> 그리고 1차캐시에서 가져온다
+//            //insert쿼리문이 나가기 전에 조회됨 1차캐시에서 조회하기 때문에
+//            System.out.println("findMember.getId() = " + findMember.getId());
+//            System.out.println("findMember.getName() = " + findMember.getName());
+//
+//            System.out.println("findMember == findMember2 = " + (findMember == findMember2)); //동일성비교 true
+
+//            Member member1 = new Member(150L, "A");
+//            Member member2 = new Member(160L, "B");
+//            em.persist(member1);
+//            em.persist(member2); //여기까진 insert 쿼리문을 보내지 않음
+//            //쓰기지연 SQL저장소에 쿼리문들을 저장해 놓았다가 커밋시점에 쿼리문을 한번에 보낸다
+
+            Member member = em.find(Member.class, 150L);
+            member.setName("BTH");  //변경감지 -> 트랜잭션 커밋시점에 변경사항 반영
+
 
             tx.commit(); //트랜젝션 커밋시점에 쿼리가 나가게 된다
         } catch (Exception e) {
