@@ -72,9 +72,14 @@ public class JpaMain {
 //            em.persist(member2); //여기까진 insert 쿼리문을 보내지 않음
 //            //쓰기지연 SQL저장소에 쿼리문들을 저장해 놓았다가 커밋시점에 쿼리문을 한번에 보낸다
 
-            Member member = em.find(Member.class, 150L);
-            member.setName("BTH");  //변경감지 -> 트랜잭션 커밋시점에 변경사항 반영
+//            Member member = em.find(Member.class, 150L);
+//            member.setName("BTH");  //변경감지 -> 트랜잭션 커밋시점에 변경사항 반영
 
+            Member member = new Member(200L, "member200");
+            em.persist(member);
+
+            em.flush(); //이 시점에 insert 쿼리문이 나가게된다
+            //플러쉬는 쓰기지연SQL저장소에 쌓인 쿼리들을 데이터베이스에 반영하는 과정이다 (변경감지등 포함) 보통 커밋이나 쿼리(JPQL)를 실행하는시점에 자동으로 호출됨(기본값) (이것도 설정으로 변경가능하다)
 
             tx.commit(); //트랜젝션 커밋시점에 쿼리가 나가게 된다
         } catch (Exception e) {
