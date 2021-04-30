@@ -82,14 +82,14 @@ public class JpaMain {
 //            em.flush(); //이 시점에 insert 쿼리문이 나가게된다
 //            //플러쉬는 쓰기지연SQL저장소에 쌓인 쿼리들을 데이터베이스에 반영하는 과정이다 (변경감지등 포함) 보통 커밋이나 쿼리(JPQL)를 실행하는시점에 자동으로 호출됨(기본값) (이것도 설정으로 변경가능하다)
 
-            Member member = em.find(Member.class, 150L);
-            member.setName("AAA");
+//            Member member = em.find(Member.class, 150L);
+//            member.setName("AAA");
 
-            em.detach(member); //JPA에서 관리를 안하게됨(준영속상태) <- 커밋시점에 아무일도 일어나지 않을 것
-
-            em.clear(); //영속성 컨텍스트를 통으로 다 지움(초기화)
-
-            Member member2 = em.find(Member.class, 150L); //영속성 컨텍스트를 초기화했기때문에 DB에서 조회해와서 1차캐시에 다시 올려놓기위해 select쿼리문이 나간다
+//            em.detach(member); //JPA에서 관리를 안하게됨(준영속상태) <- 커밋시점에 아무일도 일어나지 않을 것
+//
+//            em.clear(); //영속성 컨텍스트를 통으로 다 지움(초기화)
+//
+//            Member member2 = em.find(Member.class, 150L); //영속성 컨텍스트를 초기화했기때문에 DB에서 조회해와서 1차캐시에 다시 올려놓기위해 select쿼리문이 나간다
 
 //            em.close(); //영속성 컨텍스트 종료
 
