@@ -13,6 +13,10 @@ public class BasicMember {
     @Id @GeneratedValue
     private Long id;
 
+    @ManyToOne  //하나의 팀이 여러명의 멤버를 가질 수 있음
+    @JoinColumn(name = "TEAM_ID") //join하는 컬럼은 TEAM_ID  Team을 TEAM_ID로 join
+    private Team team;
+
     @Column(name = "name", nullable = false)
     private String username;
 
