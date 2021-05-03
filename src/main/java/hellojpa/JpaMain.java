@@ -22,7 +22,7 @@ public class JpaMain {
         try {
 
             Order order = new Order();
-            order.addOrderItem(new OrderItem());
+            order.addOrderItem(new OrderItem()); //연관관계 메서드 사용 (양쪽 객체에 값을 다 넣어준다)
 
             tx.commit();
         } catch (Exception e) {
